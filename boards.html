@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karte</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="assets/images/icon.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Dots:wght@400..700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="navbar">
+    <span class="logo">
+      <a href="login.html"><img src="assets/images/logo.png" alt="logo" width="200" height="50"></a>
+    </span>
+
+    <div class="user">
+      <p id="userSet"></p>
+      <span id="userEmail"></span>
+    </div>
+
+    <select id="user-boards-dropdown" class="dropdown">
+      <option value="">Selecione uma board</option>
+    </select>
+
+    <button id="create-board" class="nav-button"> Criar Nova Board</button>
+    <button id="delete-board" class="nav-button danger">Excluir Board</button>
+
+    <div class="theme-toggle">
+      <label for="theme">Dark Mode</label>
+      <label for="theme" id="dark-mode"></label>
+      <input type="checkbox" id="theme" />
+    </div>
+  </div>
+
+  <div class="boards-container">
+    <span class="current-board-title">
+      <h2 id="current-board-name">Nome da Board</h2>
+    </span>
+    <div class="board-content">
+      <div class="columns-container" id="columns-container">
+      </div>
+      <button id="add-column" class="button">+ Add Coluna</button>
+    </div>
+  </div>
+
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
