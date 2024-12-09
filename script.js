@@ -19,12 +19,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Pagina Boards nao possui botao de login');
   }
 
-  // const clickEnter = addEventListener('keydown', function (event) {
-  //   if (event.key === 'Enter') {
-  //     Login();
-  //   }
-  // });
-
   const userBoardsDropdown = document.getElementById('user-boards-dropdown');
   if (userBoardsDropdown) {
     userBoardsDropdown.addEventListener('change', async () => {
@@ -53,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else{
 
     try {
-      
+
       const emailsDB = await fetch(`${API_BASE_URL}/People`);
       const users = await emailsDB.json();
       const user = users.find(u => u.Email === email);
@@ -114,7 +108,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           });
 
           if (!response.ok) {
-            throw new Error('Erro ao criar a Board');
+            throw new Error('Erro ao criar a Board, resposta do servidor:', response.status);
           }
 
           const newBoard = await response.json();
