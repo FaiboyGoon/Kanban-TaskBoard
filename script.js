@@ -9,21 +9,21 @@ document.addEventListener('DOMContentLoaded', async () => {
       document.getElementById("Dark-mode").innerHTML = document.body.classList.contains('Dark Mode');
     });
   } else {
-    console.error('Elemento theme não encontrado');
+    console.error('Pagina de Login nao possui troca de tema');
   }
 
   const loginButton = document.getElementById('login-button');
   if (loginButton) {
-    loginButton.addEventListener('click', handleLogin);
+    loginButton.addEventListener('click', Login);
   } else {
     console.error('Pagina Boards nao possui botao de login');
   }
 
-  const clickEnter = addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-      handleLogin();
-    }
-  });
+  // const clickEnter = addEventListener('keydown', function (event) {
+  //   if (event.key === 'Enter') {
+  //     Login();
+  //   }
+  // });
 
   const userBoardsDropdown = document.getElementById('user-boards-dropdown');
   if (userBoardsDropdown) {
@@ -44,20 +44,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('userEmail').textContent = storedEmail; 
   }
 
-  async function handleLogin() {
+  async function Login() {
     const email = document.getElementById('email').value;
 
     if (!email) {
       alert('Por favor, insira um email');
       return;
-    }
+    } else{
 
     try {
       
-      const response = await fetch(`${API_BASE_URL}/GetPersonByEmail?Email=${encodeURIComponent(email)}`);
-
-      const user = await response.json();
-
+      const emailsDB = await fetch(`${API_BASE_URL}/People`);
+      const users = await emailsDB.json();
+      const user = users.find(u => u.Email === email);
+      
       if (user) {
         localStorage.setItem('userEmail', email);
         localStorage.setItem('userId', user.Id); 
@@ -66,11 +66,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const showError = document.getElementById('error');
         showError.innerHTML = "Email não encontrado, verifique seu email e tente novamente";
       }
+
     } catch (error) {
       console.error('Error:', error);
       alert('Falha ao fazer login.');
     }
   }
+}
 
 
   const addColumnButton = document.getElementById('add-column');
